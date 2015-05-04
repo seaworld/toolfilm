@@ -11,7 +11,6 @@ client = pymongo.MongoClient()
 db = client["dysoso"]
 table = db.film
 
-
 class A2tuccSpider(CrawlSpider):
     name = '2tucc'
     allowed_domains = ['www.2tu.cc']
@@ -69,11 +68,6 @@ class A2tuccSpider(CrawlSpider):
             return []
 
     def parse_links(self, links):
-        # newlinks = []
-        # for link in links:
-        # if not table.find_one({"url":link.url}):
-        #        newlinks.append(link)
-        # return newlinks
         return links
 
 

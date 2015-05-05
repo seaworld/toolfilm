@@ -14,20 +14,13 @@ table = db.film
 class TutuzxSpider(CrawlSpider):
     name = 'poxiao'
     allowed_domains = ['www.poxiao.com']
-    start_urls = ['http://www.poxiao.com/']
-    # start_urls = ['http://www.poxiao.com/movie/37864.html']
+    #start_urls = ['http://www.poxiao.com/']
+    start_urls = ['http://www.poxiao.com/movie/38319.html']
 
     rules = (
         Rule(SgmlLinkExtractor(allow=r'/movie/\d+\.html'), callback='parse_item', process_links='parse_links'),
-        # Rule(SgmlLinkExtractor(allow=r'/zy/\d+\.html'), callback='parse_item' , process_links='parse_links'),#综艺不要
-        # Rule(SgmlLinkExtractor(allow=r'/anime/\d+\.html'), callback='parse_item' , process_links='parse_links'),#动画电视不要
-        # Rule(SgmlLinkExtractor(allow=r'/teleplay/\d+\.html'), callback='parse_item' , process_links='parse_links'),#电视剧不要了
-        # Rule(SgmlLinkExtractor(allow=r'/type/.*/index(_\d+)?\.html'),process_links='parse_links'),
         Rule(SgmlLinkExtractor(allow=r'/type/.*/index(_2)?\.html'), process_links='parse_links'),  # 迭代更新时候使用,前3页
         Rule(SgmlLinkExtractor(allow=r'/type/movie/$'), process_links='parse_links'),
-        # Rule(SgmlLinkExtractor(allow=r'/type/zy/$'),process_links='parse_links'),
-        # Rule(SgmlLinkExtractor(allow=r'/type/anime/$'),process_links='parse_links'),
-        # Rule(SgmlLinkExtractor(allow=r'/type/teleplay/$'),process_links='parse_links'),
     )
 
     def parse_item(self, response):
@@ -95,12 +88,6 @@ class TutuzxSpider(CrawlSpider):
             return []
 
     def parse_links(self, links):
-        # newlinks = []
-        # for link in links:
-        # # 全站抓的时候，需要这样，避免重复抓取
-        #     if not table.find_one({"url": link.url}):
-        #         newlinks.append(link)
-        # return newlinks
         return links
 
 

@@ -110,11 +110,6 @@ class DyttSpider(CrawlSpider):
             return []
 
         def parse_links(self, links):
-            # newlinks = []
-            # for link in links:
-            # if not table.find_one({"url":link.url}):
-            # newlinks.append(link)
-            # return newlinks
             return links
 
 
